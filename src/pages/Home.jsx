@@ -7,7 +7,7 @@ const Home = () => {
   useEffect(() => {
     const getMovie = async () => {
       const material = await API.getMovie();
-      console.log(material);
+     
       setmovie(material);
     };
 

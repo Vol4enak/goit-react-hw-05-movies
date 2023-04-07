@@ -7,7 +7,7 @@ export const Layout = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/movies">about</Link>
+          <Link to="/movies">Movies</Link>
         </li>
       </ul>
       <Outlet />
