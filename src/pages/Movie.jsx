@@ -1,12 +1,11 @@
 import { useParams } from 'react-router-dom';
 import * as API from '../components/services/api';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 const Movie = () => {
   const [infoMovie, setInfoMovie] = useState([]);
-  const [http, setHttp] = useState('https://image.tmdb.org/t/p/w500');
   const params = useParams();
   console.log(params);
-  let ref = useRef(true);
+  
   useEffect(() => {
     const getMovie = async () => {
       const material = await API.getInfoForFilm(params.movieId);
@@ -16,9 +15,9 @@ const Movie = () => {
     getMovie().catch(console.error);
   }, [params.movieId]);
 
-  const { poster_path, title, name, vote_average, overview, genres, id } =
+  const { poster_path, title, name, vote_average, overview, id } =
     infoMovie;
-  const zxc = http + poster_path;
+  const zxc = "https://image.tmdb.org/t/p/w500" + poster_path;
   return (
     <div>
       <div key={id}>

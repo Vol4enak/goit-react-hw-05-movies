@@ -1,6 +1,6 @@
 import Home from 'pages/Home';
 import Movie from 'pages/Movie';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 export const App = () => {
   return (
