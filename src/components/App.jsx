@@ -1,22 +1,15 @@
 import Home from 'pages/Home';
+import Movie from 'pages/Movie';
 import { Link, Route, Routes } from 'react-router-dom';
-
+import { Layout } from './Layout';
 export const App = () => {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">about</Link>
-        </li>
-      </ul>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<div> list about </div>} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="movies" element={<div>privet</div>} />
+        <Route path="/:movieId" element={<Movie />} />
+      </Route>
+    </Routes>
   );
 };
