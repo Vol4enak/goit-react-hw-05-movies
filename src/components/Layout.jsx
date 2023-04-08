@@ -1,4 +1,4 @@
-import { NavLink, Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { Nav, NavItem } from './Layout.styled';
 const StyledLink = styled(NavLink)`

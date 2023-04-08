@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import * as API from '../components/services/api';
-import { Link, useLocation } from 'react-router-dom';
 import { Items, MovieList } from './Home.styled';
 
 
