@@ -1,15 +1,26 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Link, Outlet } from 'react-router-dom';
+import styled from '@emotion/styled';
+import { Nav, NavItem } from './Layout.styled';
+const StyledLink = styled(NavLink)`
+  color: black;
+  text-decoration: none;
+
+  &.active {
+    color: orange;
+  }
+`;
+
 export const Layout = () => {
   return (
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/movies">Movies</Link>
-        </li>
-      </ul>
+      <Nav>
+        <NavItem>
+          <StyledLink to="/">Home</StyledLink>
+        </NavItem>
+        <NavItem>
+          <StyledLink to="/movies">Movies</StyledLink>
+        </NavItem>
+      </Nav>
       <Outlet />
     </div>
   );

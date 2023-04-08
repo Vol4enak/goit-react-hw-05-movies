@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import * as API from '../components/services/api';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { Items, MovieList } from './Home.styled';
+
+
+
 const Home = () => {
   const [movie, setmovie] = useState([]);
 
   useEffect(() => {
     const getMovie = async () => {
       const material = await API.getMovie();
-     
+
       setmovie(material);
     };
 
@@ -16,13 +20,13 @@ const Home = () => {
 
   return (
     <div>
-      <ul>
+      <MovieList>
         {movie.map(({ id, title, name }) => (
           <li key={id}>
-            <Link to={`${id}`}> {title || name}</Link>{' '}
+            <Items to={`movies/${id}`}>{title || name}</Items>{' '}
           </li>
         ))}
-      </ul>
+      </MovieList>
     </div>
   );
 };

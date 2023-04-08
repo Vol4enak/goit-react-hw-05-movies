@@ -28,8 +28,15 @@ export const getInfoByReviews = async id => {
     `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=bcde96d2248e63a51f520e697b2ad108&language=en-US&page=1`,
     {}
   );
-  console.log(response.data);
   return response.data;
 };
 
-
+export const getSearchedMovies = async q => {
+  console.log(q);
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=bcde96d2248e63a51f520e697b2ad108&language=en-US&query=${q}&page=1&include_adult=false`,
+    {}
+  );
+  console.log(response);
+  return response.data;
+};

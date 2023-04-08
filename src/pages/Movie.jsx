@@ -1,52 +1,51 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import * as API from '../components/services/api';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Movie = () => {
-  const [infoMovie, setInfoMovie] = useState([]);
-  const [http, setHttp] = useState('');
-  const [genr, setGenr] = useState([]);
-  const params = useParams();
+  const [value, setValue] = useState('');
+  const [searchingMovie, setSearchingMovie] = useState([]);
+  const [submitStatus, setSubmitStatus] = useState(false);
+   console.log(searchingMovie);
   useEffect(() => {
-    const getMovie = async () => {
-      const material = await API.getInfoForFilm(params.movieId);
-      setInfoMovie(material);
-      setHttp('https://image.tmdb.org/t/p/w300');
-      setGenr(material.genres);
-    };
-    getMovie().catch(console.error);
-  }, [params.movieId]);
+    if (submitStatus) {
+      const getSearch = async () => {
+        const material = await API.getSearchedMovies(value);
 
-  const { poster_path, title, original_title, vote_average, overview } =
-    infoMovie;
+        setSearchingMovie(material.results);
+        setSubmitStatus(false);
+        setValue('');
+      };
+      getSearch().catch(console.error);
+    }
+  }, [submitStatus, value]);
 
-  const getGenres = () => {
-    let genre = genr.map(res => res.name);
-    genre = genre.toString().replaceAll(',', ', ');
-    return genre;
+  const formSubmit = e => {
+    e.preventDefault();
+    setSubmitStatus(true);
   };
-    return (
-      <div>
-        <button type="button"> go back</button>
-        <>
-          <img src={http + poster_path} alt="" />
-          <h3>{title || original_title}</h3>
-          <p>User score: {vote_average}</p>
-          <h4>overview</h4>
-          <p>{overview}</p>
-          <h5>Genres</h5>
-          <p>{getGenres()}</p>
-        </>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
-        <Outlet />
-      </div>
-    );
+  return (
+    <>
+      <form onSubmit={formSubmit}>
+        <label htmlFor="">
+          {' '}
+          <input
+            type="text"
+            name="name"
+            value={value}
+            onChange={e => {
+              setValue(e.target.value);
+            }}
+          />
+          <button type="submit">Search</button>
+        </label>
+      </form>
+      {searchingMovie.map(({ id, title, name }) => (
+        <li key={id}>
+          <Link to={`${id}`}> {title || name}</Link>{' '}
+        </li>
+      ))}
+    </>
+  );
 };
 
 export default Movie;
