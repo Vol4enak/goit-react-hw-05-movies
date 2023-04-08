@@ -5,7 +5,7 @@ const Movie = () => {
   const [value, setValue] = useState('');
   const [searchingMovie, setSearchingMovie] = useState([]);
   const [submitStatus, setSubmitStatus] = useState(false);
-   console.log(searchingMovie);
+
   useEffect(() => {
     if (submitStatus) {
       const getSearch = async () => {

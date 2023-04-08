@@ -11,7 +11,7 @@ const Reviews = () => {
     };
     getMovie().catch(console.error);
   }, [movieId]);
-  console.log(reviews.length);
+
   return (
     <ul>
       {reviews.length ? reviews.map(({ author, content, id }) => (

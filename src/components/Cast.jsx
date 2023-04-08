@@ -12,7 +12,7 @@ const Cast = () => {
     };
     getMovie().catch(console.error);
   }, [movieId]);
-  console.log(cast);
+
 
   return (
     <ul>
