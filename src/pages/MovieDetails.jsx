@@ -1,7 +1,7 @@
 import { useParams, Link, Outlet } from 'react-router-dom';
 import * as API from '../components/services/api';
 import { useEffect, useState } from 'react';
-import { Block } from './MovieDetails.styled';
+import { Block, BackBtn } from './MovieDetails.styled';
 const Movie = () => {
   const [infoMovie, setInfoMovie] = useState([]);
   const [http, setHttp] = useState('');
@@ -27,7 +27,7 @@ const Movie = () => {
   };
   return (
     <div>
-      <Link to="/"> назад</Link>
+      <BackBtn to="/"> назад</BackBtn>
       <Block>
         <img src={http + poster_path} alt="" />
         <div>
